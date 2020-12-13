@@ -1,0 +1,7 @@
+.Editor {
+  display: flex;
+  margin: 5rem;
+}
+.Editor .Edit {
+  padding-left: 5rem;
+}
