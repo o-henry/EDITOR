@@ -48,3 +48,11 @@
 │       ├── index.ts
 └──     └── type.editor.ts
 ```
+
+---
+
+### 설치 및 실행
+
+`npm i`
+
+`npm start`
