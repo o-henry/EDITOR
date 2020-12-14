@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import Depth from './Depth';
 import { Table, EditUser } from './containers';
-import Code from './Code';
 import { URL, INITIALSTATE } from './constant';
 import { useFetch } from './hooks';
+import { TProfile } from './types';
 import './Editor.css';
 
 function Editor() {
@@ -13,7 +14,7 @@ function Editor() {
     console.log(error);
   }
 
-  const [users, setUsers] = useState<any>(null);
+  const [users, setUsers] = useState<TProfile[]>([]);
   const [isEdit, setEdit] = useState(false);
   const [target, setTarget] = useState<any>(INITIALSTATE);
 
@@ -22,18 +23,16 @@ function Editor() {
   }, [response]);
 
   const deleteUser = (id: string) => {
-    setUsers(users.filter((user: any) => user.id !== id));
+    setUsers(users.filter(user => user.id !== id));
   };
 
-  const editUser = (user: any) => {
+  const editUser = (user: TProfile) => {
     setEdit(true);
     setTarget(user);
   };
 
-  const updateUser = (updated: any) => {
-    setUsers(
-      users.map((user: any) => (user.id === target.id ? updated : user)),
-    );
+  const updateUser = (newUser: TProfile) => {
+    setUsers(users.map(user => (user.id === target.id ? newUser : user)));
     setTarget(INITIALSTATE);
     setEdit(false);
   };
@@ -56,7 +55,7 @@ function Editor() {
         </div>
       </div>
 
-      <Code users={users} />
+      <Depth users={users} />
     </>
   );
 }

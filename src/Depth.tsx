@@ -1,11 +1,10 @@
-import React from 'react';
+import { TProfile, TBookReviews } from './types';
 
-function Code({ users }: any) {
-  console.log(users);
+function Depth({ users }: any) {
   return (
     <div>
       {users &&
-        users.map((user: any) => {
+        users.map((user: TProfile) => {
           return (
             <div key={user.id}>
               <pre>
@@ -21,11 +20,17 @@ function Code({ users }: any) {
                       isMember: ${user.isMember},
                       experiencedSeasons: ${user.experiencedSeasons},
                       createdAt: ${user.createdAt},
-                      bookReviews: [{
-                        bookTitle: ${user.bookTitle},
-                        title: ${user.title},
-                        content: ${user.content} 
+                      ${user.bookReviews.map(
+                        (book: TBookReviews) =>
+                          `
+                         bookReviews: [{
+                        bookTitle: ${book.bookTitle},
+                        title: ${book.title},
+                        content: ${book.content} 
                       }]
+                      `,
+                      )}
+                   
                     }
                   `}
               </pre>
@@ -36,4 +41,4 @@ function Code({ users }: any) {
   );
 }
 
-export default Code;
+export default Depth;

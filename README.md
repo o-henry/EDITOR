@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+### JSON-like 포맷 에디터
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+요구 사항
 
-## Available Scripts
+- 구현
 
-In the project directory, you can run:
+* [v] Primitive 데이터 타입은 string, number, boolean, date 이며, 에디터 상에서 이를 validate 할 수 있어야 합니다.
+* [v] 데이터의 구조 및 depth를 파악할 수 있어야 합니다.
+* [v] 에디터 상에서 데이터 구조는 수정할 수 없습니다. 즉, 에디터 상에서 key는 수정할 필요가 없습니다. 필드는 제거되지 않습니다.
 
-### `yarn start`
+- 구현 실패
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [x] Array 내부 엘리먼트 각각의 데이터 구조는 변하지 않는다고 가정합니다. 대신 array에 기존 엘리먼트와 동일한 데이터 구조를 가진 엘리먼트의 추가 및 엘리먼트의 삭제가 가능해야 합니다.
+* [x] 데이터는 비정형적입니다. 즉, 유저마다 데이터의 구조가 다를 수 있습니다. 예를 들면, 또다른 유저는 상기 유저에게 없는 필드를 가지고 있을 수 있으며, 그것이 object를 element로 갖는 array일 수도 있습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+### 구조
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+더미 데이터를 json 파일로 저장하여, fetch 한 뒤, 수정하는 에디터를 구현하려 했으나, 요구사항에 충족하는 모든 기능을 구현하지 못했습니다.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+├── public
+│   └── config
+│       └── user.json
+├── src
+│   ├── Depth.tsx
+│   ├── Editor.tsx
+│   ├── components
+│   │   ├── Input
+│   │   │   ├── Input.tsx
+│   │   │   ├── index.ts
+│   │   └── └── input.css
+│   ├── constant
+│   │   └──  editor.ts
+│   ├── containers
+│   │   ├── user.edit.tsx
+│   │   └── user.table.tsx
+│   ├── hooks
+│   │   ├── index.ts
+│   │   └── useFetch.ts
+│   ├── index.tsx
+│   └── types
+│       ├── index.ts
+└──     └── type.editor.ts
+```

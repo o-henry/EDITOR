@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Input } from '../components';
-import { TProfile } from '../types/type.editor';
+import { TProfile, TBookReviews } from '../types';
 
 interface Props {
   setEdit: any;
@@ -20,7 +20,7 @@ function EditUser(props: Props) {
   const handleChange = (e: any) => {
     const { name, value } = e.target;
 
-    name == 'email' || name == 'phone'
+    name === 'email' || name === 'phone'
       ? setUser({ ...user, contacts: { ...user.contacts, [name]: value } })
       : setUser({ ...user, [name]: value });
   };
@@ -71,6 +71,19 @@ function EditUser(props: Props) {
           name="phone"
           onChange={handleChange}
         />
+      </div>
+
+      <div>
+        {user.bookReviews?.map((book: TBookReviews, idx: number) => (
+          <div key={idx}>
+            <Input
+              label="책 제목"
+              value={book.bookTitle}
+              name="bookTitle"
+              onChange={handleChange}
+            />
+          </div>
+        ))}
       </div>
 
       <button type="submit">수정</button>

@@ -1,1 +1,1 @@
-export type { TContact, TProfile } from './type.editor';
+export type { TBookReviews, TContact, TProfile } from './type.editor';

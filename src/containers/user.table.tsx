@@ -1,4 +1,4 @@
-import { TProfile } from '../types';
+import { TProfile, TBookReviews } from '../types';
 
 interface Props {
   users: TProfile[];
@@ -7,7 +7,7 @@ interface Props {
 }
 
 function Table({ users, ...props }: Props) {
-  const { deleteUser, editUser } = props;
+  const { editUser } = props;
 
   return (
     <div>
@@ -19,13 +19,13 @@ function Table({ users, ...props }: Props) {
               <th>나이</th>
               <th>이메일</th>
               <th>번호</th>
+              <th>책 리뷰</th>
               <th>수정</th>
-              <th>삭제</th>
             </tr>
           </thead>
           <tbody>
             {users &&
-              users.map((user: TProfile) => {
+              users.map(user => {
                 const { id, age, name, contacts } = user;
 
                 return (
@@ -35,10 +35,14 @@ function Table({ users, ...props }: Props) {
                     <td>{contacts.email}</td>
                     <td>{contacts.phone}</td>
                     <td>
-                      <button onClick={() => editUser(user)}>수정</button>
+                      {user.bookReviews.map(
+                        (book: TBookReviews, idx: number) => (
+                          <div key={idx}>{book.bookTitle}</div>
+                        ),
+                      )}
                     </td>
                     <td>
-                      <button onClick={() => deleteUser(id)}>삭제</button>
+                      <button onClick={() => editUser(user)}>수정</button>
                     </td>
                   </tr>
                 );
